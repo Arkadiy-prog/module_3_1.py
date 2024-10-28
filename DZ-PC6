@@ -1,0 +1,36 @@
+KOD
+#module_3_1.py
+# Глобальная переменная для подсчёта вызовов функций
+calls = 0
+
+def count_calls():
+    global calls
+    calls += int(1)
+
+def string_info(string):
+    count_calls()  # Увеличиваем счётчик вызовов
+    return (len(string), string.upper(), string.lower())
+
+def is_contains(string, list_to_search):
+    count_calls()  # Увеличиваем счётчик вызовов
+    # Приводим строку и все строки в списке к нижнему регистру для сравнения
+    string_lower = string.lower()
+    return string_lower in (item.lower() for item in list_to_search)
+
+# Примеры вызовов функций
+print(string_info('Montana'))
+print(string_info('California'))
+print(is_contains('Urban', ['ban', 'BaNaN', 'urBAN']))  # Urban ~ urBAN
+print(is_contains('cycle', ['recycling', 'cyclic']))    # No matches
+
+# Выводим количество вызовов
+print(calls)
+
+PC
+(7, 'MONTANA', 'montana')
+(10, 'CALIFORNIA', 'california')
+True
+False
+4
+
+Process finished with exit code 0
